@@ -10,6 +10,7 @@ import Inventory from '../components/Inventory';
 import doorImage from '../assets/images/door.svg';
 import soundManager from '../utils/SoundManager';
 import useKeyboardShortcuts from '../hooks/useKeyboardShortcuts';
+import keyImage from '../assets/images/key.svg';
 
 const Game = ({ settings = {} }) => {
   const navigate = useNavigate();
@@ -607,7 +608,7 @@ const Game = ({ settings = {} }) => {
                 }}
                 className="text-game-highlight text-5xl mx-auto mb-6"
               >
-                <img src="/src/assets/images/key.svg" alt="Key" className="w-16 h-16 mx-auto" />
+                <img src={keyImage} alt="Key" className="w-16 h-16 mx-auto" />
               </motion.div>
               
               <h2 className="text-3xl font-game text-game-accent mb-4">

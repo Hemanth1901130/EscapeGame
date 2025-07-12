@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { FaChevronUp, FaChevronDown, FaKey, FaScroll, FaCamera } from 'react-icons/fa';
 import useGameContext from '../hooks/useGameContext';
 import soundManager from '../utils/SoundManager';
+import keyImage from '../assets/images/key.svg';
 
 const Inventory = () => {
   const { collectedItems } = useGameContext();
@@ -18,7 +19,7 @@ const Inventory = () => {
         name: 'Mysterious Key',
         description: 'An ornate key with strange markings. It must unlock something important.',
         icon: <FaKey className="text-game-highlight text-xl" />,
-        image: '/src/assets/images/key.svg'
+        image: keyImage
       },
       'clue1': {
         name: 'Cryptic Note',
