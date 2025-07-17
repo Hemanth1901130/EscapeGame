@@ -14,17 +14,14 @@ const SettingsPanel = ({ onSettingsChange }) => {
     hintFrequency: 'normal'
   });
 
-  // Apply settings when they change
   useEffect(() => {
     if (onSettingsChange) {
       onSettingsChange(settings);
     }
     
-    // Save settings to localStorage
     localStorage.setItem('gameSettings', JSON.stringify(settings));
   }, [settings, onSettingsChange]);
 
-  // Load settings from localStorage on mount
   useEffect(() => {
     const savedSettings = localStorage.getItem('gameSettings');
     if (savedSettings) {
@@ -52,7 +49,6 @@ const SettingsPanel = ({ onSettingsChange }) => {
 
   return (
     <>
-      {/* Settings toggle button */}
       <button
         onClick={() => setIsOpen(true)}
         className="fixed top-20 right-20 z-40 bg-game-darker p-3 rounded-full border border-game-accent/30 hover:border-game-accent transition-colors"
@@ -61,7 +57,6 @@ const SettingsPanel = ({ onSettingsChange }) => {
         <FaCog className="text-game-accent text-xl animate-spin-slow" />
       </button>
 
-      {/* Settings panel */}
       {isOpen && (
         <motion.div
           initial={{ opacity: 0, x: 300 }}
@@ -82,7 +77,6 @@ const SettingsPanel = ({ onSettingsChange }) => {
           </div>
 
           <div className="space-y-6">
-            {/* Sound Settings */}
             <div className="game-panel">
               <h3 className="text-lg font-game text-game-highlight mb-4">Audio</h3>
               
@@ -107,7 +101,6 @@ const SettingsPanel = ({ onSettingsChange }) => {
               </div>
             </div>
 
-            {/* Difficulty Settings */}
             <div className="game-panel">
               <h3 className="text-lg font-game text-game-highlight mb-4">Difficulty</h3>
               
@@ -134,7 +127,6 @@ const SettingsPanel = ({ onSettingsChange }) => {
               </div>
             </div>
 
-            {/* Visual Settings */}
             <div className="game-panel">
               <h3 className="text-lg font-game text-game-highlight mb-4">Visual</h3>
               
@@ -173,7 +165,6 @@ const SettingsPanel = ({ onSettingsChange }) => {
               </div>
             </div>
 
-            {/* Reset Button */}
             <button
               onClick={() => setSettings({
                 soundEnabled: true,
@@ -188,7 +179,6 @@ const SettingsPanel = ({ onSettingsChange }) => {
               Reset to Defaults
             </button>
             
-            {/* Close Button at the bottom for better accessibility */}
             <button
               onClick={() => setIsOpen(false)}
               className="w-full mt-4 py-3 px-4 bg-game-accent text-game-dark font-bold hover:bg-game-highlight transition-colors rounded flex items-center justify-center gap-2"

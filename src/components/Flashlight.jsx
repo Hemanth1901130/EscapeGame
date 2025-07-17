@@ -13,18 +13,14 @@ const Flashlight = ({ settings = {}, level = 1 }) => {
   const [isFlickering, setIsFlickering] = useState(false);
   const flashlightRef = useRef(null);
   
-  // Apply settings
   const intensity = settings.flashlightIntensity || 70;
-  // Decrease flashlight size based on level (gets smaller as levels progress)
-  const levelSizeFactor = Math.max(0.5, 1 - (level - 1) * 0.05); // Reduce by 5% per level, min 50%
+  const levelSizeFactor = Math.max(0.5, 1 - (level - 1) * 0.05);
   const size = (140 + (intensity / 100) * 70) * levelSizeFactor;
   
-  // Increase drain rate based on level
   const baseDrainRate = settings.difficulty === 'hard' ? 0.25 :
                        settings.difficulty === 'easy' ? 0.08 : 0.15;
-  const drainRate = baseDrainRate * (1 + (level - 1) * 0.1); // Increase by 10% per level
+  const drainRate = baseDrainRate * (1 + (level - 1) * 0.1);
   
-  // Handle mouse movement
   useEffect(() => {
     const handleMouseMove = (e) => {
       if (isActive && batteryLevel > 0) {
@@ -47,7 +43,6 @@ const Flashlight = ({ settings = {}, level = 1 }) => {
     };
   }, [isActive, batteryLevel]);
 
-  // Battery drain effect
   useEffect(() => {
     let batteryDrain;
     
@@ -56,7 +51,6 @@ const Flashlight = ({ settings = {}, level = 1 }) => {
         setBatteryLevel(prev => {
           const newLevel = Math.max(0, prev - drainRate);
           
-          // Show warning when battery is low
           if (newLevel <= 20 && newLevel > 0 && !showWarning) {
             setShowWarning(true);
             setIsFlickering(true);
@@ -67,7 +61,6 @@ const Flashlight = ({ settings = {}, level = 1 }) => {
             }, 3000);
           }
           
-          // Turn off flickering when battery is recharged
           if (newLevel > 20 && isFlickering) {
             setIsFlickering(false);
           }
@@ -82,7 +75,6 @@ const Flashlight = ({ settings = {}, level = 1 }) => {
     };
   }, [isActive, batteryLevel, isRecharging, showWarning, isFlickering, drainRate]);
 
-  // Flickering effect for low battery
   useEffect(() => {
     let flickerInterval;
     
@@ -98,7 +90,6 @@ const Flashlight = ({ settings = {}, level = 1 }) => {
     return () => {
       if (flickerInterval) clearInterval(flickerInterval);
       
-      // Reset opacity when not flickering
       if (flashlightRef.current && !isFlickering) {
         flashlightRef.current.style.opacity = batteryLevel / 100;
       }

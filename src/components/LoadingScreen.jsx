@@ -23,11 +23,9 @@ const LoadingScreen = ({ onLoadingComplete }) => {
         if (prev >= 100) {
           clearInterval(interval);
           
-          // Delay hiding the loading screen to show 100% for a moment
           setTimeout(() => {
             setIsVisible(false);
             
-            // Notify parent component that loading is complete
             setTimeout(() => {
               if (onLoadingComplete) onLoadingComplete();
             }, 500);
@@ -36,11 +34,9 @@ const LoadingScreen = ({ onLoadingComplete }) => {
           return 100;
         }
         
-        // Update loading text based on progress
         const textIndex = Math.floor((prev / 100) * loadingTexts.length);
         setLoadingText(loadingTexts[Math.min(textIndex, loadingTexts.length - 1)]);
         
-        // Randomize progress increments for more realistic loading
         return prev + Math.random() * 3 + 1;
       });
     }, 100);

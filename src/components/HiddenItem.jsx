@@ -18,7 +18,6 @@ const HiddenItem = ({
   const [isCollected, setIsCollected] = useState(false);
   const [showHint, setShowHint] = useState(false);
 
-  // Check if mouse is near the item to reveal it
   useEffect(() => {
     const checkMouseProximity = (e) => {
       const mouseX = e.clientX;
@@ -32,7 +31,6 @@ const HiddenItem = ({
         Math.pow(mouseY - itemCenterY, 2)
       );
       
-      // Item becomes visible when mouse is within 150px
       setIsVisible(distance < 150);
     };
 
@@ -52,7 +50,6 @@ const HiddenItem = ({
     }
   };
 
-  // Function to toggle hint visibility (used in hover events)
   // eslint-disable-next-line no-unused-vars
   const toggleHint = () => {
     setShowHint(!showHint);

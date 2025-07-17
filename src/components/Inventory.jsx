@@ -12,7 +12,6 @@ const Inventory = () => {
   const [selectedItem, setSelectedItem] = useState(null);
   const [itemDetails, setItemDetails] = useState({});
 
-  // Define item details
   useEffect(() => {
     setItemDetails({
       'key': {
@@ -40,7 +39,6 @@ const Inventory = () => {
     setIsOpen(!isOpen);
     soundManager.playSound('ui_click');
     
-    // Close item details when closing inventory
     if (isOpen) {
       setSelectedItem(null);
     }
@@ -57,7 +55,6 @@ const Inventory = () => {
 
   return (
     <div className="fixed bottom-4 left-4 z-40">
-      {/* Inventory toggle button */}
       <button
         onClick={toggleInventory}
         className="bg-game-darker border border-game-accent/30 hover:border-game-accent transition-colors p-3 rounded-full flex items-center justify-center"
@@ -70,7 +67,6 @@ const Inventory = () => {
         )}
       </button>
       
-      {/* Inventory panel */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -117,7 +113,6 @@ const Inventory = () => {
               </div>
             )}
             
-            {/* Item details */}
             <AnimatePresence>
               {selectedItem && (
                 <motion.div
